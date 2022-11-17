@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    
+
     //add product btn
     $('.add-product-btn').on('click', function (e) {
 
@@ -14,14 +14,14 @@ $(document).ready(function () {
             `<tr>
                 <td>${name}</td>
                 <td><input type="number" name="products[${id}][quantity]" data-price="${price}" class="form-control input-sm product-quantity" min="1" value="1"></td>
-                <td class="product-price">${price}</td>               
+                <td class="product-price">${price}</td>
                 <td><button class="btn btn-danger btn-sm remove-product-btn" data-id="${id}"><span class="fa fa-trash"></span></button></td>
             </tr>`;
 
         $('.order-list').append(html);
 
         //to calculate total price
-        calculateTotal();
+        //calculateTotal();
     });
 
     //disabled btn
@@ -56,35 +56,35 @@ $(document).ready(function () {
 
     });//end of product quantity change
 
-    //list all order products
-    $('.order-products').on('click', function(e) {
+    // //list all order products
+    // $('.order-products').on('click', function(e) {
 
-        e.preventDefault();
+    //     e.preventDefault();
 
-        $('#loading').css('display', 'flex');
-        
-        var url = $(this).data('url');
-        var method = $(this).data('method');
-        $.ajax({
-            url: url,
-            method: method,
-            success: function(data) {
+    //     $('#loading').css('display', 'flex');
 
-                $('#loading').css('display', 'none');
-                $('#order-product-list').empty();
-                $('#order-product-list').append(data);
+    //     var url = $(this).data('url');
+    //     var method = $(this).data('method');
+    //     $.ajax({
+    //         url: url,
+    //         method: method,
+    //         success: function(data) {
 
-            }
-        })
+    //             $('#loading').css('display', 'none');
+    //             $('#order-product-list').empty();
+    //             $('#order-product-list').append(data);
 
-    });//end of order products click
+    //         }
+    //     })
 
-    //print order
-    $(document).on('click', '.print-btn', function() {
+    // });//end of order products click
 
-        $('#print-area').printThis();
+    // //print order
+    // $(document).on('click', '.print-btn', function() {
 
-    });//end of click function
+    //     $('#print-area').printThis();
+
+    // });//end of click function
 
 });//end of document ready
 
@@ -94,7 +94,7 @@ function calculateTotal() {
     var price = 0;
 
     $('.order-list .product-price').each(function(index) {
-        
+
         price += parseFloat($(this).html().replace(/,/g, ''));
 
     });//end of product price
